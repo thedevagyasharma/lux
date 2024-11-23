@@ -1,25 +1,25 @@
 import p5 from 'p5';
 import { useRef, useEffect } from 'react';
 
-const P5Sketch = ({ name, noiseIntensity }) => {
-  const sketchRef = useRef(); // Reference for the container element
+interface P5SketchProps {
+  name: string;
+  noiseIntensity: number;
+  lissajousParams: {
+    a: number;
+    b: number;
+    delta: number;
+  };
+}
+
+const P5Sketch: React.FC<P5SketchProps> = ({ name, noiseIntensity, lissajousParams }) => {
+  const sketchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const sketch = (p) => {
-      let gradientColors;
-      let lissajousParams;
+    const sketch = (p: p5) => {
+      let gradientColors: p5.Color[];
 
       p.setup = () => {
-        p.createCanvas(400, 400).parent(sketchRef.current); // Attach canvas to the container
-
-        // Generate random Lissajous curve parameters
-        lissajousParams = {
-          a: p.int(p.random(1, 6)), // Random integers for frequency
-          b: p.int(p.random(1, 6)),
-          delta: p.random(0, p.TWO_PI), // Random phase difference
-        };
-
-        // Define gradient colors
+        p.createCanvas(400, 400).parent(sketchRef.current!);
         gradientColors = [
           p.color(p.random(100, 255), p.random(100, 255), p.random(100, 255)),
           p.color(p.random(100, 255), p.random(100, 255), p.random(100, 255)),
@@ -27,9 +27,8 @@ const P5Sketch = ({ name, noiseIntensity }) => {
       };
 
       p.draw = () => {
-        p.clear(); // Clear the canvas for redraw
+        p.clear();
 
-        // Draw Gradient Background
         for (let y = 0; y < p.height; y++) {
           const inter = p.map(y, 0, p.height, 0, 1);
           const c = p.lerpColor(gradientColors[0], gradientColors[1], inter);
@@ -37,12 +36,11 @@ const P5Sketch = ({ name, noiseIntensity }) => {
           p.line(0, y, p.width, y);
         }
 
-        // Add Perlin Noise Overlay
         p.loadPixels();
         for (let x = 0; x < p.width; x++) {
           for (let y = 0; y < p.height; y++) {
             const index = (x + y * p.width) * 4;
-            const noiseValue = p.noise(x * noiseIntensity + p.random(1000), y * noiseIntensity + p.random(1000)) * 255;
+            const noiseValue = p.noise(x * noiseIntensity, y * noiseIntensity) * 255;
             p.pixels[index] += noiseValue;
             p.pixels[index + 1] += noiseValue;
             p.pixels[index + 2] += noiseValue;
@@ -50,7 +48,6 @@ const P5Sketch = ({ name, noiseIntensity }) => {
         }
         p.updatePixels();
 
-        // Draw Lissajous Curve
         p.noFill();
         p.stroke(0);
         p.strokeWeight(2);
@@ -63,7 +60,6 @@ const P5Sketch = ({ name, noiseIntensity }) => {
         }
         p.endShape();
 
-        // Draw User Name
         p.fill(255);
         p.textAlign(p.CENTER, p.CENTER);
         p.textSize(20);
@@ -76,7 +72,7 @@ const P5Sketch = ({ name, noiseIntensity }) => {
     return () => {
       p5Instance.remove();
     };
-  }, [name, noiseIntensity]);
+  }, [name, noiseIntensity, lissajousParams]);
 
   return <div ref={sketchRef}></div>;
 };
