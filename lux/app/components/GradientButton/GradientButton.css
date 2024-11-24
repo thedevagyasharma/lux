@@ -1,0 +1,27 @@
+button {
+    border: none;
+    cursor: pointer;
+    height: 64px;
+    width: 64px;
+    transition: border-radius 0.3s ease;
+    outline: none;
+}
+
+
+
+button.selected {
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+button.selected:hover {
+    border-radius: 50%;
+}
+
+button:not(.selected) {
+    border-radius: 8px;
+}
+
+button:not(.selected):hover {
+    border-radius: 16px;
+}

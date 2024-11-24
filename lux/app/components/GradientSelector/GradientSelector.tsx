@@ -1,31 +1,31 @@
-"use client"
+'use client';
 
 import React, { useState } from 'react';
 import { GRADIENTS } from '@/app/utils/gradients';
+import GradientButton from '../GradientButton/GradientButton';
+import './GradientSelector.css';
 
-const GradientSelector = () => {
-  const [selectedGradient, setSelectedGradient] = useState({});
+interface GradientSelectorProps {
+  selectedGradient: { id: string; colors: string[]; stops: number[] } | null;
+  onSelect: (gradient: { id: string; colors: string[]; stops: number[] }) => void;
+}
 
-  const handleGradientSelect = (newGradient: { id: string; colors: string[]; stops: number[] }) => {
-    setSelectedGradient(newGradient);
-    console.log('Set: ' + newGradient.id);
-  };
-
+const GradientSelector: React.FC<GradientSelectorProps> = ({ selectedGradient, onSelect }) => {
   return (
     <>
-        {GRADIENTS.map((gradient, index) => (
-            <>
-          <button
-            key={index}
-            style={{
-              background: `linear-gradient(135deg, ${gradient.colors.join(', ')})`,
-            }}
-            onClick={() => handleGradientSelect(gradient)}
-          >
-          </button>
-            </>
-            
-        ))}
+    <div className='tool-title'>
+      SELECT A GRADIENT
+    </div>
+    <div className='gradient-selector'>
+      {GRADIENTS.map((gradient, index) => (
+        <GradientButton
+          key={index}
+          gradient={gradient}
+          selectedGradient={selectedGradient}
+          onSelect={onSelect}
+        />
+      ))}
+    </div>
     </>
   );
 };
