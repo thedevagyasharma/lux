@@ -13,11 +13,14 @@ const GradientButton: React.FC<GradientButtonProps> = ({ gradient, selectedGradi
   return (
     <button
       className={isSelected ? 'selected' : ''}
-      style={{
-        background: `linear-gradient(135deg, ${gradient.colors.join(', ')})`,
-      }}
       onClick={() => onSelect(gradient)}
     >
+      <div
+        className="gradient"
+        style={{
+          background: `linear-gradient(135deg, ${gradient.colors.join(', ')})`,
+        }}
+      ></div>
     </button>
   );
 };

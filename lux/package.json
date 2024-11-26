@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tsparticles/react": "^3.0.0",
     "color": "^4.2.3",
     "next": "15.0.3",
     "p5": "^1.11.1",
     "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "tsparticles": "^3.6.0"
   },
   "devDependencies": {
     "@types/color": "^4.2.0",

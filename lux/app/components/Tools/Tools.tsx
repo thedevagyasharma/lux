@@ -1,6 +1,6 @@
 import React from 'react';
 import GradientSelector from '../GradientSelector/GradientSelector';
-import Slider from '../Slider/Slider'; // Import the new Slider component
+import Slider from '../Slider/Slider';
 import { uniqueRatios } from '@/app/utils/uniqueRatios';
 import './Tools.css';
 
@@ -23,13 +23,26 @@ const Tools: React.FC<ToolsProps> = ({ selectedGradient, onSelect, ratioIndex, o
       <div className='sliders'>
         <label>
           Ratio:
-          <Slider value={ratioIndex} onChange={onRatioChange} />
-          {uniqueRatios[ratioIndex].a}/{uniqueRatios[ratioIndex].b}
         </label>
+        <Slider
+            value={ratioIndex}
+            onChange={onRatioChange}
+            min={0}
+            max={uniqueRatios.length - 1}
+            step={1}
+            list='tickmarks'
+          />
+          {uniqueRatios[ratioIndex].a}/{uniqueRatios[ratioIndex].b}
         <label>
           Delta:
-          <input type='range' min='0' max='6.28' step='0.01' value={delta} onChange={(e) => onDeltaChange(Number(e.target.value))} />
         </label>
+        <Slider
+            value={delta}
+            onChange={onDeltaChange}
+            min={0}
+            max={6.28}
+            step={0.01}
+          />
       </div>
     </div>
   );

@@ -5,11 +5,12 @@
     gap: 8px;
     width: 20vw;
     min-width: 400px;
-    background-color: #1e1e1e;
+    background-color: #262626 100%!important;
     padding: 32px;
     border-radius: 32px;
     position:absolute;
     left: 64px;
     border: 2px solid #767676;
+    backdrop-filter: blur(8px);
 }
 
