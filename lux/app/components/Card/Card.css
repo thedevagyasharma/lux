@@ -6,13 +6,14 @@
     display: flex;
     border-radius: 32px;
     position: relative;
+    justify-content: flex-start;
 }
 
 .outline {
     width: 268px;
     height: 493px;
     margin: 16px;
-    border: 4px solid white;
+    border: 2px solid white;
     border-radius: 24px;
     position: absolute;
 }
@@ -23,5 +24,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 32px;
+    margin: 32px 32px 0px 32px;
+    position: absolute;
+    top: 0;
+}
+
+.card-text {
+    margin-top: 260px; /* Adjust this value to position the text field */
+    width: 80%;
+    height: 100px;
+    border: none;
+    background: transparent;
+    resize: none;
+    font-size: 24px;
+    text-align: center;
+    outline: none;
+    z-index: 2;
+}
+
+.display-text {
+    margin-top: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.card-text span {
+    display: block; /* Make each word take the full width */
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.light {
+    font-weight: 300;
 }
