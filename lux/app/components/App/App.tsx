@@ -13,6 +13,8 @@ const App = () => {
   const [ratioIndex, setRatioIndex] = useState(0);
   const [delta, setDelta] = useState(0);
   const [text, setText] = useState('Enter Text'); // State to hold the text field value
+  const [spokes, setSpokes] = useState(3);
+  const [stroke, setStroke] = useState(2);
   const [init, setInit] = useState(false);
 
   
@@ -36,6 +38,10 @@ const App = () => {
         onDeltaChange={setDelta}
         text={text}
         onTextChange={setText}
+        spokes={spokes}
+        onSpokesChange={setSpokes}
+        stroke={stroke}
+        onStrokeChange={setStroke}
       />
     </div>
   );

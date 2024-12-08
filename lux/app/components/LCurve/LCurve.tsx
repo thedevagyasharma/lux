@@ -20,18 +20,11 @@ const LCurve: React.FC<LCurveProps> = ({ a, b, delta, width, height, gradient })
 
   return (
     <svg width={width} height={height}>
-      <defs>
-        <linearGradient id="gradientStroke" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2={width} y2={height}>
-          {gradient && gradient.colors.map((color, index) => (
-            <stop key={index} offset={`${gradient.stops[index]}%`} stopColor={color} />
-          ))}
-        </linearGradient>
-      </defs>
       <polyline
         points={points.join(' ')}
         fill="none"
-        stroke="url(#gradientStroke)"
-        strokeWidth="1"
+        stroke="#ffffff" // White stroke
+        strokeWidth="2"
       />
     </svg>
   );
