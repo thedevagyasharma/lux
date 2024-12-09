@@ -17,13 +17,17 @@ interface CardProps {
 const width = 224; // 16px margin from each side of the stroke
 
 const Card: React.FC<CardProps> = ({ gradient, a, b, delta, text, spokes, stroke }) => {
-  const lightenedColors = gradient
-  ? gradient.colors.map(color => Color(color).lightness(95).hex())
-  : [];
+  
+  const cardRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
-const backgroundColor = gradient
-  ? `linear-gradient(135deg, ${lightenedColors.join(', ')})`
-  : 'none';
+  const lightenedColors = gradient
+    ? gradient.colors.map(color => Color(color).lightness(95).hex())
+    : [];
+
+  const backgroundColor = gradient
+    ? `linear-gradient(135deg, ${lightenedColors.join(', ')})`
+    : 'none';
   
   const textColor = gradient ? gradient.colors[0] : '#000';
 
@@ -39,16 +43,39 @@ const backgroundColor = gradient
     }
     return lines;
   };
+
+  useEffect(() => {
+    const adjustFontSize = () => {
+      if (textRef.current) {
+        const containerWidth = 236; // Default to 300 if cardRef is not available
+        let fontSize = 32; // Initial font size
+        textRef.current.style.fontSize = `${fontSize}px`;
+
+        while (textRef.current.scrollWidth > containerWidth && fontSize > 0) {
+          fontSize -= 1;
+          textRef.current.style.fontSize = `${fontSize}px`;
+        }
+      }
+    };
+
+    adjustFontSize();
+    window.addEventListener('resize', adjustFontSize);
+
+    return () => {
+      window.removeEventListener('resize', adjustFontSize);
+    };
+  }, [text]);
   
   return (
     <div>
       <div className='card'
-       style={{ background: backgroundColor }}>
+       style={{ background: backgroundColor }} ref={cardRef}>
+        <div className='outline'></div>
         <div className='square-box' style={{ background: `linear-gradient(135deg, ${gradient?.colors.join(', ')})` }}>
           <LCurve a={a} b={b} delta={delta} width={width} height={width} gradient={gradient} />
         </div>
-        <div className='outline'></div>
-        <div className="card-text" style={{ color: textColor }}>
+        
+        <div className="card-text" style={{ color: textColor }} ref={textRef}>
           {text.split(' ').map((word, index) => (
             <span key={index} className={index === 0 ? 'bold' : 'light'}>
               {word}
