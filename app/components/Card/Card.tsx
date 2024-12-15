@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import Color from 'color';
 import './Card.css';
 import LCurve from '../LCurve/LCurve';
-LCurve
 
 interface CardProps {
   gradient: { id: string; colors: string[]; stops: number[] } | null;
@@ -66,10 +65,45 @@ const Card: React.FC<CardProps> = ({ gradient, a, b, delta, text, spokes, stroke
     };
   }, [text]);
   
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (cardRef.current) {
+        const rect = cardRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotateX = (y / rect.height) * -20;
+        const rotateY = (x / rect.width) * 20;
+
+        cardRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        cardRef.current.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 32px rgba(0, 0, 0, 0.5)`;
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (cardRef.current) {
+        cardRef.current.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        cardRef.current.style.boxShadow = '0 0 32px rgba(0, 0, 0, 0.5)';
+      }
+    };
+
+    if (cardRef.current) {
+      cardRef.current.addEventListener('mousemove', handleMouseMove);
+      cardRef.current.addEventListener('mouseleave', handleMouseLeave);
+    }
+
+    return () => {
+      if (cardRef.current) {
+        cardRef.current.removeEventListener('mousemove', handleMouseMove);
+        cardRef.current.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
+  }, []);
+
   return (
     <div>
       <div className='card'
        style={{ background: backgroundColor }} ref={cardRef}>
+        <div className='shiny-layer'></div>
         <div className='outline'></div>
         <div className='square-box' style={{ background: `linear-gradient(135deg, ${gradient?.colors.join(', ')})` }}>
           <LCurve a={a} b={b} delta={delta} width={width} height={width} gradient={gradient} />

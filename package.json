@@ -1,5 +1,5 @@
 {
-  "homepage": "https://thedevagyasharma.github.io/lux",
+  "homepage": "https://lux.devagyasharma.com",
   "name": "lux",
   "version": "0.1.0",
   "private": true,
@@ -9,9 +9,10 @@
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out -t true"
   },
   "dependencies": {
+    "@fontsource/space-grotesk": "^5.1.0",
     "color": "^4.2.3",
     "next": "15.0.3",
     "p5": "^1.11.1",
