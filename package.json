@@ -1,0 +1,32 @@
+{
+  "homepage": "https://lux.devagyasharma.com",
+  "name": "lux",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out -t true"
+  },
+  "dependencies": {
+    "@fontsource/space-grotesk": "^5.1.0",
+    "color": "^4.2.3",
+    "html-to-image": "^1.11.13",
+    "next": "15.0.3",
+    "p5": "^1.11.1",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "tsparticles": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/color": "^4.2.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "gh-pages": "^6.2.0",
+    "typescript": "^5"
+  }
+}

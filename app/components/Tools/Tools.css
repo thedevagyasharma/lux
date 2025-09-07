@@ -1,0 +1,98 @@
+.tools-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+  width: auto;
+  margin: 32px;
+  background-color: #262626 !important;
+  padding: 32px;
+  border-radius: 32px;
+  position: relative;
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset 1px 1px 1px #1B1B1B,
+    inset -1px -1px 1px #303030,
+    -4px -4px 20px #303030,
+    4px 4px 20px #1B1B1B;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+}
+
+.tool {
+  padding-bottom: 16px;
+  width: 100%;
+}
+
+.tool input {
+  width: 100%;
+  padding: 8px;
+  height: 32px;
+  background-color: #262626 !important;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow:
+    inset 1px 1px 1px #1B1B1B,
+    inset -1px -1px 1px #303030,
+    -4px -4px 20px #303030,
+    4px 4px 20px #1B1B1B;
+}
+
+#downloadButton {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.1s ease-in;
+  box-shadow: none;
+  border: 1px solid #3b3b3b;
+}
+
+#downloadButton:hover {
+  box-shadow:
+    1px 1px 1px #1B1B1B,
+    -1px -1px 1px #303030,
+    inset -4px -4px 20px #303030,
+    inset 4px 4px 20px #1B1B1B;
+    border: 1px solid transparent;
+}
+
+
+
+#downloadButton:active {
+  box-shadow:
+    inset 1px 1px 1px #1B1B1B,
+    inset -1px -1px 1px #303030,
+    -4px -4px 20px #303030,
+    4px 4px 20px #1B1B1B;
+  transition: box-shadow 0.2s ease-in;
+}
+
+.tool-title {
+  font-size: 14px;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: #767676;
+  margin-bottom: 8px;
+}
+
+
+@media (max-width: 768px) {
+  .tools-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section {
+    width: 100%;
+  }
+}

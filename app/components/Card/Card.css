@@ -1,0 +1,104 @@
+.card-container {
+  perspective: 1500px;
+}
+
+.card {
+    width: 300px;
+    height: 525px;
+    min-width: 300px;
+    min-height: 525px;
+    display: flex;
+    border-radius: 32px;
+    position: relative;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    perspective: 100px;
+    overflow: hidden;
+    box-shadow: 0 0 32px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.shiny-layer {
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+
+.outline {
+    width: 268px;
+    height: 493px;
+    margin: 16px;
+    border: 2px solid white;
+    border-radius: 24px;
+    position: absolute;
+}
+
+.square-box {
+    width: 232px; /* 16px margin from each side of the stroke */
+    height: 232px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 32px 32px 0px 32px;
+    position: absolute;
+    top: 0;
+    border-radius: 12px;
+    transition: transform 0.1s ease;
+}
+
+.card-text {
+    position: absolute;
+    top: 280px;
+    left: 32px;
+    width: 236px;
+    height: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-size: 32px;
+    outline: none;
+    z-index: 2;
+    line-height: 135%;
+    transition: transform 0.1s ease;
+}
+
+
+.card-text span {
+    display: block; /* Make each word take the full width */
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.light {
+    font-weight: 300;
+}
+
+.circular-element {
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-line {
+    position: absolute;
+    bottom: 62px; /* Align with the center of the circular element */
+    left: 32px; /* Adjusted to make space for the circular element */
+    width: 156px;
+    height: 4px;
+    border-radius: 2px;
+  }
+  

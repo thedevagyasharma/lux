@@ -1,0 +1,27 @@
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    height: auto;
+    width: 100vw;
+    position: relative;
+    background-color: #262626;
+    box-sizing: border-box;
+    overflow: scroll;
+  }
+
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure particles are behind other content */
+  }

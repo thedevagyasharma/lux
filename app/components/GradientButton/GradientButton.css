@@ -1,0 +1,46 @@
+button {
+    border: none;
+    cursor: pointer;
+    height: 64px;
+    width: 64px;
+    transition: border-radius 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    background: #262626; /* Background color for the neumorphic effect */
+    border-radius: 16px;
+    box-shadow: 
+        inset 1px 1px 1px #1B1B1B, /* Inner shadow */
+        inset -1px -1px 1px #303030, /* Inner shadow */
+        -4px -4px 20px #303030, /* Drop shadow */
+        4px 4px 20px #1B1B1B; /* Drop shadow */
+    position: relative;
+}
+
+button .gradient {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border-radius: 12px; /* Adjusted to fit within the container */
+    transition: border-radius 0.3s ease, box-shadow 0.3s ease;
+}
+
+button.selected .gradient {
+    border-radius: 50%; /* Make the gradient element a circle when selected */
+}
+
+button.selected {
+    border-radius: 50%;
+}
+
+button.selected:hover {
+    border-radius: 50%;
+}
+
+button:not(.selected) {
+    border-radius: 16px;
+}
+
+button:not(.selected):hover {
+    border-radius: 16px;
+}
