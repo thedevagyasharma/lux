@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { forwardRef, useRef, useEffect } from 'react';
 import Color from 'color';
 import './Card.css';
 import LCurve from '../LCurve/LCurve';
@@ -67,17 +67,22 @@ const Card: React.FC<CardProps> = ({ gradient, a, b, delta, text, spokes, stroke
   
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (cardRef.current) {
-        const rect = cardRef.current.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const rotateX = (y / rect.height) * -20;
-        const rotateY = (x / rect.width) * 20;
+  if (cardRef.current) {
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
 
-        cardRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        cardRef.current.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 32px rgba(0, 0, 0, 0.5)`;
-      }
-    };
+    const rotateX = (y / rect.height) * -25;
+    const rotateY = (x / rect.width) * 25;
+
+    // Shadow follows opposite of the mouse direction
+    const shadowX = -(x / rect.width) * 40; 
+    const shadowY = -(y / rect.height) * 40;
+
+    cardRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    cardRef.current.style.boxShadow = `${shadowX}px ${shadowY}px 40px rgba(0, 0, 0, 0.5)`;
+  }
+};
 
     const handleMouseLeave = () => {
       if (cardRef.current) {
@@ -100,7 +105,7 @@ const Card: React.FC<CardProps> = ({ gradient, a, b, delta, text, spokes, stroke
   }, []);
 
   return (
-    <div>
+    <div className='card-container'>
       <div className='card'
        style={{ background: backgroundColor }} ref={cardRef}>
         <div className='shiny-layer'></div>
@@ -125,6 +130,6 @@ const Card: React.FC<CardProps> = ({ gradient, a, b, delta, text, spokes, stroke
       </div>
     </div>
   );
-};
+}
 
 export default Card;

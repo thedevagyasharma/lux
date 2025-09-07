@@ -16,7 +16,7 @@ export const GRADIENTS = [
       },
       {
         id: 'gradient-4',
-        colors: ['#06FF9C', '#37DAFF', '#7FE82E', '#FFFF29', '#2BC030'],
+        colors: ['#00bd71', '#37DAFF', '#7FE82E', '#FFFF29', '#2BC030'],
         stops: [0, 25, 50, 75, 100],
       },
       {
@@ -31,12 +31,12 @@ export const GRADIENTS = [
       },
       {
         id: 'gradient-7',
-        colors: ['#00FF55', '#42D000', '#EBDE52', '#FFDEC1', '#FF6C3F'],
+        colors: ['#00bb3e', '#42D000', '#EBDE52', '#FFDEC1', '#FF6C3F'],
         stops: [0, 25, 50, 75, 100],
       },
       {
         id: 'gradient-8',
-        colors: ['#D8B116', '#FF6334', '#00D05E', '#FEDF9E', '#FFA82E'],
+        colors: ['#ff7b00', '#FF6334', '#00D05E', '#FEDF9E', '#FFA82E'],
         stops: [0, 25, 50, 75, 100],
       },
       {
